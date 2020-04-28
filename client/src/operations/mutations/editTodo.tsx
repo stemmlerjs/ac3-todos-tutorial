@@ -3,7 +3,7 @@
 import { gql, useMutation } from "@apollo/client";
 import * as EditTodoTypes from './__generated__/EditTodo'
 import { GET_ALL_TODOS } from "../queries/getAllTodos";
-import { GetAllTodos } from "../__generated__/GetAllTodos";
+import { GetAllTodos } from "../queries/__generated__/GetAllTodos";
 
 export const EDIT_TODO = gql`
   mutation EditTodo ($id: Int!, $text: String!) {
@@ -42,16 +42,14 @@ export function useEditTodo () {
           cache.writeQuery({
             query: GET_ALL_TODOS,
             data: {
-              todos: {
-                edges: allTodos?.todos.edges.map(
-                  (t) => t?.node.id === data?.editTodo.todo?.id ? {
+              todos: allTodos?.todos.map(
+                (t) => t?.id === data?.editTodo.todo?.id ? {
+                  ...t,
+                  node: {
                     ...t,
-                    node: {
-                      ...t?.node,
-                      text: data?.editTodo.todo?.text
-                    }
-                } : t)
-              },
+                    text: data?.editTodo.todo?.text
+                  }
+              } : t)
             },
           });
         }

@@ -102,7 +102,7 @@ export type PageInfo = {
 
 export type Query = {
    __typename?: 'Query';
-  todos: TodosConnection;
+  todos: Array<Maybe<Todo>>;
   todo: TodoResult;
 };
 
@@ -137,18 +137,6 @@ export type TodoNotFoundError = {
 };
 
 export type TodoResult = Todo | TodoNotFoundError;
-
-export type TodosConnection = {
-   __typename?: 'TodosConnection';
-  edges: Array<Maybe<TodosEdge>>;
-  pageInfo: PageInfo;
-};
-
-export type TodosEdge = {
-   __typename?: 'TodosEdge';
-  node: Todo;
-  cursor: Scalars['String'];
-};
 
 export type TodoValidationError = {
    __typename?: 'TodoValidationError';
@@ -232,11 +220,8 @@ export type ResolversTypes = {
   Query: ResolverTypeWrapper<{}>,
   String: ResolverTypeWrapper<Scalars['String']>,
   Int: ResolverTypeWrapper<Scalars['Int']>,
-  TodosConnection: ResolverTypeWrapper<TodosConnection>,
-  TodosEdge: ResolverTypeWrapper<TodosEdge>,
   Todo: ResolverTypeWrapper<Todo>,
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>,
-  PageInfo: ResolverTypeWrapper<PageInfo>,
   TodoResult: ResolversTypes['Todo'] | ResolversTypes['TodoNotFoundError'],
   TodoNotFoundError: ResolverTypeWrapper<TodoNotFoundError>,
   Mutation: ResolverTypeWrapper<{}>,
@@ -250,6 +235,7 @@ export type ResolversTypes = {
   DeleteTodoResult: ResolverTypeWrapper<DeleteTodoResult>,
   EditTodoResult: ResolverTypeWrapper<Omit<EditTodoResult, 'error'> & { error?: Maybe<ResolversTypes['EditTodoError']> }>,
   EditTodoError: ResolversTypes['TodoNotFoundError'] | ResolversTypes['TodoValidationError'],
+  PageInfo: ResolverTypeWrapper<PageInfo>,
   CacheControlScope: CacheControlScope,
   Upload: ResolverTypeWrapper<Scalars['Upload']>,
 };
@@ -259,11 +245,8 @@ export type ResolversParentTypes = {
   Query: {},
   String: Scalars['String'],
   Int: Scalars['Int'],
-  TodosConnection: TodosConnection,
-  TodosEdge: TodosEdge,
   Todo: Todo,
   Boolean: Scalars['Boolean'],
-  PageInfo: PageInfo,
   TodoResult: ResolversParentTypes['Todo'] | ResolversParentTypes['TodoNotFoundError'],
   TodoNotFoundError: TodoNotFoundError,
   Mutation: {},
@@ -277,6 +260,7 @@ export type ResolversParentTypes = {
   DeleteTodoResult: DeleteTodoResult,
   EditTodoResult: Omit<EditTodoResult, 'error'> & { error?: Maybe<ResolversParentTypes['EditTodoError']> },
   EditTodoError: ResolversParentTypes['TodoNotFoundError'] | ResolversParentTypes['TodoValidationError'],
+  PageInfo: PageInfo,
   CacheControlScope: CacheControlScope,
   Upload: Scalars['Upload'],
 };
@@ -347,7 +331,7 @@ export type PageInfoResolvers<ContextType = any, ParentType extends ResolversPar
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  todos?: Resolver<ResolversTypes['TodosConnection'], ParentType, ContextType, RequireFields<QueryTodosArgs, never>>,
+  todos?: Resolver<Array<Maybe<ResolversTypes['Todo']>>, ParentType, ContextType, RequireFields<QueryTodosArgs, never>>,
   todo?: Resolver<ResolversTypes['TodoResult'], ParentType, ContextType, RequireFields<QueryTodoArgs, 'id'>>,
 };
 
@@ -370,18 +354,6 @@ export type TodoNotFoundErrorResolvers<ContextType = any, ParentType extends Res
 
 export type TodoResultResolvers<ContextType = any, ParentType extends ResolversParentTypes['TodoResult'] = ResolversParentTypes['TodoResult']> = {
   __resolveType: TypeResolveFn<'Todo' | 'TodoNotFoundError', ParentType, ContextType>
-};
-
-export type TodosConnectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['TodosConnection'] = ResolversParentTypes['TodosConnection']> = {
-  edges?: Resolver<Array<Maybe<ResolversTypes['TodosEdge']>>, ParentType, ContextType>,
-  pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>,
-  __isTypeOf?: isTypeOfResolverFn<ParentType>,
-};
-
-export type TodosEdgeResolvers<ContextType = any, ParentType extends ResolversParentTypes['TodosEdge'] = ResolversParentTypes['TodosEdge']> = {
-  node?: Resolver<ResolversTypes['Todo'], ParentType, ContextType>,
-  cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
-  __isTypeOf?: isTypeOfResolverFn<ParentType>,
 };
 
 export type TodoValidationErrorResolvers<ContextType = any, ParentType extends ResolversParentTypes['TodoValidationError'] = ResolversParentTypes['TodoValidationError']> = {
@@ -409,8 +381,6 @@ export type Resolvers<ContextType = any> = {
   TodoAlreadyCompletedError?: TodoAlreadyCompletedErrorResolvers<ContextType>,
   TodoNotFoundError?: TodoNotFoundErrorResolvers<ContextType>,
   TodoResult?: TodoResultResolvers,
-  TodosConnection?: TodosConnectionResolvers<ContextType>,
-  TodosEdge?: TodosEdgeResolvers<ContextType>,
   TodoValidationError?: TodoValidationErrorResolvers<ContextType>,
   Upload?: GraphQLScalarType,
 };

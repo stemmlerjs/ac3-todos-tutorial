@@ -14,13 +14,3 @@ export const COMPLETE_ALL_TODOS = gql`
     }
   }
 `
-
-export function useCompleteAllTodos () {
-  const [mutate, { data, error }] = useMutation<
-    CompleteAllTodosTypes.CompleteAllTodos
-  >(
-    COMPLETE_ALL_TODOS
-  )
-
-  return { mutate, data, error };
-}

@@ -29,7 +29,12 @@ export function useCompleteTodo () {
     CompleteTodoTypes.CompleteTodo, 
     CompleteTodoTypes.CompleteTodoVariables
   >(
-    COMPLETE_TODO
+    COMPLETE_TODO,
+    {
+      refetchQueries: [{
+        query: GET_ALL_TODOS
+      }]
+    }
   )
 
   return { mutate, data, error };

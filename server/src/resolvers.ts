@@ -108,7 +108,7 @@ const resolvers: Resolvers = {
       queryTodos = PaginationUtils
         .filterByBeforeAndAfter(queryTodos, after, before) as Todo[];
 
-      return TodoMapper.toTodosConnection(queryTodos);
+      return queryTodos;
     },
     todo: async (_, { id }, context: Context): Promise<TodoResult> => {
       const { todosRepo } = context;

@@ -1,7 +1,8 @@
 import React from 'react'
 import { render } from 'react-dom'
 import App from './components/App'
-import { ApolloClient, ApolloProvider } from '@apollo/client';
+import { ApolloClient } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client';
 import 'todomvc-app-css/index.css'
 import { cache } from './cache';
 

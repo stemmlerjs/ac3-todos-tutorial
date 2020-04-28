@@ -14,16 +14,6 @@ const typeDefs = gql`
     completed: Boolean!
   }
 
-  type TodosEdge {
-    node: Todo!
-    cursor: String!
-  }
-
-  type TodosConnection {
-    edges: [TodosEdge]!
-    pageInfo: PageInfo!
-  }
-
   type TodoNotFoundError {
     message: String!
   }
@@ -36,7 +26,7 @@ const typeDefs = gql`
       before: String, 
       first: Int, 
       last: Int
-    ): TodosConnection!
+    ): [Todo]!
 
     todo (id: Int!): TodoResult!
   }
