@@ -1,6 +1,5 @@
 
 import React from 'react'
-import { visibilityFilterVar } from '../cache'
 import TodoList from '../components/TodoList';
 import { VisiblityFilter, VisibilityFilters } from '../models/VisibilityFilter';
 import { Todos } from '../models/Todos';
@@ -20,10 +19,10 @@ function filterTodosByVisibility(visibilityFilter: VisiblityFilter, todos: Todos
 
 export default function VisibleTodoList () {
   const todos: Todos = [];
-  const filteredTodos = filterTodosByVisibility(visibilityFilterVar(), todos);
+  // const filteredTodos = filterTodosByVisibility(visibilityFilterVar(), todos);
 
   return <TodoList 
-    filteredTodos={filteredTodos} 
+    filteredTodos={todos} 
     actions={{
       completeTodo: (id: number) => {},
       deleteTodo: (id: number) => {},

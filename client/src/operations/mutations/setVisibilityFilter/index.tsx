@@ -1,5 +1,5 @@
 
 import createSetVisibilityFilter from './setVisibilityFilter'
-import { visibilityFilterVar } from '../../../cache'
+// import { visibilityFilterVar } from '../../../cache'
 
-export const setVisibilityFilter = createSetVisibilityFilter(visibilityFilterVar)
+// export const setVisibilityFilter = createSetVisibilityFilter(visibilityFilterVar)
