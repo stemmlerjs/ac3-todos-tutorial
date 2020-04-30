@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "start": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1",
     "codegen": "graphql-codegen --config ./codegen.yml"
@@ -13,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "apollo-server": "^2.11.0",
+    "apollo-server-lambda": "^2.12.0",
     "graphql": "^14.6.0"
   },
   "devDependencies": {

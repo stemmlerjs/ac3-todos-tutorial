@@ -1,7 +1,6 @@
 import {
   Todo,
   Resolvers,
-  TodosConnection,
   TodoResult,
   AddTodoResult,
   CompleteTodoResult,
@@ -11,8 +10,7 @@ import {
   EditTodoResult
 } from "./generated/graphql";
 import { PaginationUtils } from "./shared/utils/paginationUtils";
-import { TodoMapper } from "./shared/mappers/todoMapper";
-import { Context } from './index'
+import { Context } from './server'
 
 const resolvers: Resolvers = {
   Mutation: {
@@ -91,7 +89,7 @@ const resolvers: Resolvers = {
     }
   },
   Query: {
-    todos: async (_, { after, before, first, last }, context: Context): Promise<TodosConnection> => {
+    todos: async (_, { after, before, first, last }, context: Context): Promise<Todo[]> => {
       const { todosRepo } = context;
       const todos = await todosRepo.getAllTodos();
 
