@@ -11,4 +11,5 @@ export interface TodoRepo {
   getAllTodos (): Promise<Todo[]>;
   getTodoById (id: number): Promise<Todo>;
   getLastTodo (): Promise<Todo>;
+  save (todo: Todo): Promise<void>;
 }

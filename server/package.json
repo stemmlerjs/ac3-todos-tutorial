@@ -7,23 +7,26 @@
     "build": "tsc",
     "start": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "codegen": "graphql-codegen --config ./codegen.yml"
+    "codegen": "graphql-codegen --config codegen.yml"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@graphql-codegen/cli": "1.12.2",
+    "@graphql-codegen/introspection": "1.12.2",
+    "@graphql-codegen/typescript": "1.12.2",
+    "@graphql-codegen/typescript-resolvers": "1.12.2",
     "apollo-server": "^2.11.0",
     "apollo-server-lambda": "^2.12.0",
     "graphql": "^14.6.0"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^1.13.1",
-    "@graphql-codegen/introspection": "1.13.0",
-    "@graphql-codegen/typescript": "1.13.0",
-    "@graphql-codegen/typescript-resolvers": "1.13.0",
     "nodemon": "^2.0.2",
     "ts-node": "^8.6.2",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "@graphql-codegen/typescript": "1.12.2",
+    "@graphql-codegen/typescript-resolvers": "1.12.2",
+    "@graphql-codegen/introspection": "1.12.2"
   }
 }

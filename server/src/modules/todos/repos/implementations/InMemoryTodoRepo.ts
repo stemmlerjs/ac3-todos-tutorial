@@ -63,4 +63,15 @@ export class InMemoryTodoRepo implements TodoRepo {
   public async completeAllTodos (): Promise<void> {
     this.todos = this.todos.map((t) => ({ ...t, completed: true }))
   }
+
+  public async save (todo: Todo): Promise<void> {
+    const index = this.todos.findIndex((t) => t.id === todo.id);
+    const found = index !== -1;
+
+    if (found) {
+      this.todos[index] = todo;
+    } else {
+      this.todos.push(todo);
+    }
+  }
 }
